@@ -87,7 +87,9 @@
        inkscape:rounded="0"
        inkscape:randomized="0"
        d="m 99.217145,283.43569 -62.72583,0 -31.3629123,-54.32217 31.3629173,-54.32216 62.72583,0 31.36291,54.32217 z"
-       transform="matrix(0.13615346,0,0,0.13396002,68.043189,213.06328)" />
+       transform="matrix(0.13615346,0,0,0.13396002,68.043189,213.06328)"
+       inkscape:export-xdpi="360"
+       inkscape:export-ydpi="360" />
     <g
        aria-label="LMirx"
        transform="matrix(0.26458333,0,0,0.26458333,0,222.38744)"

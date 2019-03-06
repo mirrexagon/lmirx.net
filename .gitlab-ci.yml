@@ -1,0 +1,36 @@
+stages:
+  - deploy
+  - post-deploy
+
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r * .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+  except:
+    - schedules
+
+letsencrypt:
+  image: node:8-alpine
+  stage: post-deploy
+  variables:
+    DOMAIN: "lmirx.net"
+  before_script:
+    - apk add git python --update-cache
+    - npm install -g gitlab-letsencrypt --unsafe-perm
+  script: |
+    gitlab-le \
+    --domain $DOMAIN \
+    --email $LE_EMAIL \
+    --token $GITLAB_API_TOKEN \
+    --repository $CI_PROJECT_URL \
+    --production
+  only:
+    - schedules
+
