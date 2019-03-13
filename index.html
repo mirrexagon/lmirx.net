@@ -4,41 +4,25 @@
     <head>
         <title>LMirx</title>
 
-        <link href="/favicon.png" type="image/png" rel="icon">
-        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-        <style>
-            body {
-                background-color: #1b1b1b;
-                color: #f0f0f0;
-                font-family: 'PT Sans', sans-serif;
-                font-size: 3vw;
-            }
-
-            .container {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-
-                width: 50%;
-
-                img {
-                    display: inline-block;
-                }
-            }
-        </style>
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans">
     </head>
 
-
-
     <body>
-        <div class="container">
-            <img src="logo.svg" alt="LMirx followed by a hexagon" width="100%" />
-
-            <p>
-                The intersection of two worlds.
-            </p>
+        <div id="header">
+            <img src="logo.svg" alt="LMirx followed by a hexagon" width="100%">
+            <p>The intersection of two worlds.</p>
         </div>
+
+        <div id="hrule">
+            <hr>
+        </div>
+
+        <div id="music-viewer"">
+        </div>
+        <script src="music-viewer.js"></script>
     </body>
 </html>
