@@ -8,7 +8,7 @@ const CONTAINER_ID = "music-viewer";
 function main() {
     get_music_metadata()
     .then(metadata => {
-        document.getElementById(CONTAINER_ID).innerHTML = metadata[0].basename;
+        document.getElementById(CONTAINER_ID).innerHTML = "Coming soon.";
     })
     .catch(err => {
         console.log(err);
