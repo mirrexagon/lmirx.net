@@ -16,8 +16,8 @@ function main() {
 }
 
 async function get_music_metadata() {
-    let string = await fetch(MUSIC_METADATA_URL);
-    return res.json();
+    let json_string = await fetch(MUSIC_METADATA_URL);
+    return json_string.json();
 }
 
 main();
