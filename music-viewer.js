@@ -3,22 +3,70 @@ const CONTENT_URL = "https://s3-ap-southeast-2.amazonaws.com/lmirx.net";
 const MUSIC_CONTENT_URL = CONTENT_URL + "/music";
 const MUSIC_DATA_URL = MUSIC_CONTENT_URL + "/music.json"
 
-const CONTAINER_ID = "music-viewer";
+// -- Globals --
+var music_search_input = document.getElementById("music-search-input");
+var global_music_data;
 
-const MUSIC_LIST_CLASS = "music-list";
+music_search_input.value = "";
 
-const SONG_ITEM_CLASS = "song-item";
-const SONG_ITEM_TITLE_CLASS = "song-item-title";
 
-// -- Callbacks --
-function display_tag(tag) {
+// -- Search stuff --
+function on_tag_clicked(tag) {
+    music_search_input.value = tag;
+    on_search_key_up();
+}
+
+function on_search_key_up() {
+    let filter = music_search_input.value.toUpperCase();
+    let ul = document.getElementById("music-list");
+
+    // Only get immediate children li.
+    let li = [];
+    {
+        let children = ul.childNodes;
+
+        for(let i = 0; i < children.length; i++) {
+            if(children[i].nodeName == "LI") {
+                li.push(children[i]);
+            }
+        }
+    }
+
+    for (li_i = 0; li_i < li.length; li_i++) {
+        let song_data = global_music_data[li_i];
+        let found = false;
+
+        if (song_data.artist.toUpperCase().indexOf(filter) > -1) {
+            found = true;
+        } else if (song_data.title.toUpperCase().indexOf(filter) > -1) {
+            li[li_i].style.display = "";
+            found = true;
+        }
+
+        // Only check tags if we haven't found the string already.
+        if (!found) {
+            for (let tag_i = 0; tag_i < song_data.tags.length; ++tag_i) {
+                if (song_data.tags[tag_i].toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (found) {
+            li[li_i].style.display = "";
+        } else {
+            li[li_i].style.display = "none";
+        }
+    }
 }
 
 // -- Main --
 function main() {
     get_music_data()
     .then(music_data => {
-        document.getElementById(CONTAINER_ID).appendChild(make_list_from_music_data(music_data));
+        global_music_data = music_data;
+        document.getElementById("music-viewer").appendChild(make_list_from_music_data(music_data));
     })
     .catch(err => {
         console.log(err);
@@ -26,8 +74,9 @@ function main() {
 }
 
 function make_list_from_music_data(music_data) {
-    let list = document.createElement("ul");
-    list.className = MUSIC_LIST_CLASS;
+    let list = document.getElementById("music-list")
+
+    console.log("Number of songs: " + music_data.length);
 
     for (let i = 0; i < music_data.length; ++i) {
         let item = document.createElement('li');
@@ -94,7 +143,7 @@ function make_song_item(song_data) {
             let tag_item = tags_item_template.content.cloneNode(true);
             let button = tag_item.querySelector("button");
 
-            button.onclick = function() { display_tag(song_data.tags[i]); }
+            button.onclick = function() { on_tag_clicked(song_data.tags[i]); }
             button.textContent = song_data.tags[i];
 
             tags.appendChild(tag_item);

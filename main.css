@@ -4,7 +4,7 @@ body {
     font-family: 'PT Sans', sans-serif;
     font-size: 24pt;
 
-    width: 650px;
+    max-width: 650px;
     margin: 40px auto;
     padding: 0px 10px;
 }
@@ -40,13 +40,22 @@ a:active {
     padding: 0px 76px;
 }
 
+div#music-search {
+    padding: 0 128px 8px;
+}
+
+#music-search input {
+    font-size: 14pt;
+    width: 100%;
+}
+
 #music-viewer {
     font-size: 18pt;
     padding: 16px;
     line-height: 1.4;
 }
 
-ul.music-list {
+ul#music-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
