@@ -24,5 +24,24 @@
         <div id="music-viewer"">
         </div>
         <script src="music-viewer.js"></script>
+
+        <template id="song-item">
+            <div class="song-item">
+                <h2 class="song-title"></h2>
+
+                <audio class="song-audio" controls preload="none">
+                    <source class="song-audio-source" type="audio/ogg">
+                </audio>
+
+                <ul class="song-downloads">
+                </ul>
+
+                <p class="song-comment"></p>
+            </div>
+        </template>
+
+        <template id="song-downloads-item">
+            <li><a></a></li>
+        </template>
     </body>
 </html>
