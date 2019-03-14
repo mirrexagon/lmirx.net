@@ -10,6 +10,11 @@ const MUSIC_LIST_CLASS = "music-list";
 const SONG_ITEM_CLASS = "song-item";
 const SONG_ITEM_TITLE_CLASS = "song-item-title";
 
+// -- Callbacks --
+function display_tag(tag) {
+}
+
+// -- Main --
 function main() {
     get_music_data()
     .then(music_data => {
@@ -67,8 +72,10 @@ function make_song_item(song_data) {
         for (let i = 0; i < downloads_array.length; ++i) {
             let download_item = download_item_template.content.cloneNode(true);
             let anchor = download_item.querySelector("a");
+
             anchor.textContent = downloads_array[i][0];
             anchor.setAttribute("href", downloads_array[i][1]);
+
             downloads.appendChild(download_item);
         }
     }
@@ -77,6 +84,21 @@ function make_song_item(song_data) {
         item.querySelector(".song-comment").textContent = song_data.comment;
     } else {
         item.querySelector(".song-comment").remove();
+    }
+
+    {
+        let tags = item.querySelector(".song-tags");
+        let tags_item_template = document.getElementById("song-tags-item");
+
+        for (let i = 0; i < song_data.tags.length; ++i) {
+            let tag_item = tags_item_template.content.cloneNode(true);
+            let button = tag_item.querySelector("button");
+
+            button.onclick = function() { display_tag(song_data.tags[i]); }
+            button.textContent = song_data.tags[i];
+
+            tags.appendChild(tag_item);
+        }
     }
 
     return item;
