@@ -1,3 +1,5 @@
+// TODO: Only allow playing one audio at a time, pause if playing one gets hidden
+
 const CONTENT_URL = "https://s3-ap-southeast-2.amazonaws.com/lmirx.net";
 
 const MUSIC_CONTENT_URL = CONTENT_URL + "/music";
