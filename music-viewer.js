@@ -73,6 +73,15 @@ function main() {
     .catch(err => {
         console.log(err);
     });
+
+    // https://stackoverflow.com/a/37764796
+    window.addEventListener("play", function(evt) {
+        if(window.$_currentlyPlaying && window.$_currentlyPlaying != evt.target) {
+            window.$_currentlyPlaying.pause();
+        }
+
+        window.$_currentlyPlaying = evt.target;
+    }, true);
 }
 
 function make_list_from_music_data(music_data) {
