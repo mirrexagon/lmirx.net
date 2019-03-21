@@ -67,12 +67,6 @@ function on_search_key_up() {
 function main() {
     get_music_data()
     .then(music_data => {
-        // TODO: Figure out what to do.
-        for (let song_i = 0; song_i < music_data.length; ++song_i) {
-            let song = music_data[song_i];
-            song.tags = song.tags.filter(tag => tag !== "aeroverse");
-        }
-
         global_music_data = music_data;
         document.getElementById("music-viewer").appendChild(make_list_from_music_data(music_data));
     })
