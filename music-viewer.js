@@ -9,8 +9,10 @@ const MUSIC_DATA_URL = MUSIC_CONTENT_URL + "/music.json"
 var music_search_input = document.getElementById("music-search-input");
 var global_music_data;
 
-music_search_input.value = "";
+var global_audios = [];
+var global_visible_songs = [];
 
+music_search_input.value = "";
 
 // -- Search stuff --
 function on_tag_clicked(tag) {
@@ -19,6 +21,8 @@ function on_tag_clicked(tag) {
 }
 
 function on_search_key_up() {
+    global_visible_indices = [];
+
     let filter = music_search_input.value.toUpperCase();
     let ul = document.getElementById("music-list");
 
@@ -57,8 +61,10 @@ function on_search_key_up() {
 
         if (found) {
             li[li_i].style.display = "";
+            global_visible_songs[li_i] = true;
         } else {
             li[li_i].style.display = "none";
+            global_visible_songs[li_i] = false;
         }
     }
 }
@@ -81,6 +87,22 @@ function main() {
         }
 
         window.$_currentlyPlaying = evt.target;
+    }, true);
+
+    window.addEventListener("ended", function(evt) {
+        console.log("ENDED");
+        let index = global_audios.findIndex(audio => audio == window.$_currentlyPlaying);
+
+        // Play next visible song.
+        for (let i = index + 1; i < global_audios.length; ++i) {
+            console.log("check: " + i);
+            if (global_visible_songs[i]) {
+                console.log("Now playing next song: " + i);
+                global_audios[i].play();
+                window.$_currentlyPlaying = global_audios[i];
+                break;
+            }
+        }
     }, true);
 }
 
@@ -115,6 +137,9 @@ function make_song_item(song_data) {
 
     item.querySelector(".song-title").textContent = song_data.artist + " - " + song_data.title;
     item.querySelector(".song-audio-source").setAttribute("src", ogg_url);
+
+    global_visible_songs.push(true);
+    global_audios.push(item.querySelector(".song-audio"));
 
     {
         let downloads = item.querySelector(".song-downloads");
