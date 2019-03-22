@@ -1,7 +1,7 @@
 const CONTENT_URL = "https://s3-ap-southeast-2.amazonaws.com/lmirx.net";
 
 const MUSIC_CONTENT_URL = CONTENT_URL + "/music";
-const MUSIC_DATA_URL = MUSIC_CONTENT_URL + "/music.json"
+const MUSIC_DATA_URL = MUSIC_CONTENT_URL + "/music.json";
 
 // -- Globals --
 var music_search_input = document.getElementById("music-search-input");
@@ -19,8 +19,6 @@ function on_tag_clicked(tag) {
 }
 
 function on_search_key_up() {
-    global_visible_indices = [];
-
     let filter = music_search_input.value.toUpperCase();
     let ul = document.getElementById("music-list");
 
@@ -36,7 +34,7 @@ function on_search_key_up() {
         }
     }
 
-    for (li_i = 0; li_i < li.length; li_i++) {
+    for (let li_i = 0; li_i < li.length; li_i++) {
         let song_data = global_music_data[li_i];
         let found = false;
 
@@ -105,7 +103,7 @@ function main() {
 }
 
 function make_list_from_music_data(music_data) {
-    let list = document.getElementById("music-list")
+    let list = document.getElementById("music-list");
 
     console.log("Number of songs: " + music_data.length);
 
@@ -123,10 +121,10 @@ function make_song_item(song_data) {
 
     let base_url = MUSIC_CONTENT_URL + "/" + song_data.basename;
 
-    let flac_url = base_url + ".flac"
-    let ogg_url = base_url + ".ogg"
+    let flac_url = base_url + ".flac";
+    let ogg_url = base_url + ".ogg";
 
-    let project_url = undefined;
+    let project_url;
     if (song_data.project_extension !== undefined) {
         project_url = base_url + song_data.project_extension;
     }
@@ -177,7 +175,7 @@ function make_song_item(song_data) {
             let tag_item = tags_item_template.content.cloneNode(true);
             let button = tag_item.querySelector("button");
 
-            button.onclick = function() { on_tag_clicked(song_data.tags[i]); }
+            button.onclick = function() { on_tag_clicked(song_data.tags[i]); };
             button.textContent = song_data.tags[i];
 
             tags.appendChild(tag_item);
