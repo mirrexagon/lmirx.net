@@ -7,9 +7,7 @@ pages:
   script:
     - mkdir .public
     - cp -r * .public
-    - mkdir -p public
-    - mv .public/* public
-    - rmdir .public
+    - mv .public public
   artifacts:
     paths:
       - public
