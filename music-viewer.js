@@ -89,13 +89,17 @@ function main() {
         console.log("ENDED");
         let index = global_audios.findIndex(audio => audio == window.$_currentlyPlaying);
 
-        // Play next visible song.
+        // Scroll to and play next visible song.
         for (let i = index + 1; i < global_audios.length; ++i) {
             console.log("check: " + i);
             if (global_visible_songs[i]) {
                 console.log("Now playing next song: " + i);
+
+                window.location.hash = "#song-" + i;
+
                 global_audios[i].play();
                 window.$_currentlyPlaying = global_audios[i];
+
                 break;
             }
         }
@@ -109,15 +113,16 @@ function make_list_from_music_data(music_data) {
 
     for (let i = 0; i < music_data.length; ++i) {
         let item = document.createElement('li');
-        item.appendChild(make_song_item(music_data[i]));
+        item.appendChild(make_song_item(music_data[i], i));
         list.appendChild(item);
     }
 
     return list;
 }
 
-function make_song_item(song_data) {
+function make_song_item(song_data, index) {
     let item = document.getElementById("song-item").content.cloneNode(true);
+    item.querySelector(".song-item").id = "song-" + index;
 
     let base_url = MUSIC_CONTENT_URL + "/" + song_data.basename;
 
@@ -132,6 +137,7 @@ function make_song_item(song_data) {
     // ---
 
     item.querySelector(".song-title").textContent = song_data.artist + " - " + song_data.title;
+
     item.querySelector(".song-audio-source").setAttribute("src", ogg_url);
 
     global_visible_songs.push(true);
