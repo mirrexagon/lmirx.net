@@ -13,12 +13,20 @@ var global_visible_songs = [];
 music_search_input.value = "";
 
 // -- Search stuff --
-function on_tag_clicked(tag) {
+function set_search_to(tag) {
     music_search_input.value = tag;
     on_search_key_up();
 }
 
 function on_search_key_up() {
+    // Set query string in URL.
+    // https://stackoverflow.com/a/19279428
+    if (history.pushState) {
+        // var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?s=" + music_search_input.value;
+        // window.history.pushState({path:newurl}, '', newurl);
+    }
+
+    // Now let us search.
     let filter = music_search_input.value.toUpperCase();
     let ul = document.getElementById("music-list");
 
@@ -71,6 +79,7 @@ function main() {
     .then(music_data => {
         global_music_data = music_data;
         document.getElementById("music-viewer").appendChild(make_list_from_music_data(music_data));
+        set_search_to_query_string();
     })
     .catch(err => {
         console.log(err);
@@ -104,6 +113,26 @@ function main() {
             }
         }
     }, true);
+
+    window.addEventListener("popstate", function(evt) {
+        // set_search_to_query_string(evt.state.path);
+    })
+}
+
+function set_search_to_query_string(url) {
+    // If search is in query string, set up that search.
+    console.log("set_search_to_query_string got: " + url);
+
+    // Hack from https://developer.mozilla.org/en-US/docs/Web/API/Location
+    var url_holder = document.createElement('a');
+    url_holder.href = url;
+
+    const urlParams = new URLSearchParams(url ? url_holder.search : window.location.search);
+    const search = urlParams.get('s');
+    console.log("Search in query string is: " + search);
+    if (search !== null) {
+        set_search_to(search);
+    }
 }
 
 function make_list_from_music_data(music_data) {
@@ -181,7 +210,7 @@ function make_song_item(song_data, index) {
             let tag_item = tags_item_template.content.cloneNode(true);
             let button = tag_item.querySelector("button");
 
-            button.onclick = function() { on_tag_clicked(song_data.tags[i]); };
+            button.onclick = function() { set_search_to(song_data.tags[i]); };
             button.textContent = song_data.tags[i];
 
             tags.appendChild(tag_item);
