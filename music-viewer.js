@@ -86,6 +86,15 @@ function main() {
         console.log(err);
     });
 
+    // Sync all volumes.
+    window.addEventListener("volumechange", function(evt) {
+        let newVolume = evt.target.volume;
+
+        for (element of global_audios) {
+            element.volume = newVolume;
+        }
+    }, true)
+
     // https://stackoverflow.com/a/37764796
     window.addEventListener("play", function(evt) {
         if(window.$_currentlyPlaying && window.$_currentlyPlaying != evt.target) {
