@@ -105,15 +105,11 @@ function main() {
     }, true);
 
     window.addEventListener("ended", function(evt) {
-        console.log("ENDED");
         let index = global_audios.findIndex(audio => audio == window.$_currentlyPlaying);
 
         // Scroll to and play next visible song.
         for (let i = index + 1; i < global_audios.length; ++i) {
-            console.log("check: " + i);
             if (global_visible_songs[i]) {
-                console.log("Now playing next song: " + i);
-
                 window.location.hash = "#song-" + i;
 
                 global_audios[i].play();
@@ -131,15 +127,12 @@ function main() {
 
 function set_search_to_query_string(url) {
     // If search is in query string, set up that search.
-    console.log("set_search_to_query_string got: " + url);
-
     // Hack from https://developer.mozilla.org/en-US/docs/Web/API/Location
     var url_holder = document.createElement('a');
     url_holder.href = url;
 
     const urlParams = new URLSearchParams(url ? url_holder.search : window.location.search);
     const search = urlParams.get('s');
-    console.log("Search in query string is: " + search);
     if (search !== null) {
         set_search_to(search);
     }
