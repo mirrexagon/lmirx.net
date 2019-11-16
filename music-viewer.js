@@ -2,7 +2,7 @@ const CONTENT_URL = "https://s3-ap-southeast-2.amazonaws.com/lmirx.net";
 
 const MUSIC_CONTENT_URL = CONTENT_URL + "/music";
 
-const MUSIC_DATA_URL = "/music.json";
+const MUSIC_DATA_URL = "music.json";
 
 // -- Globals --
 var music_search_input = document.getElementById("music-search-input");
