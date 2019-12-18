@@ -4,6 +4,8 @@ MUSIC_DIR=~/archive/finished_music/music
 
 process_limit=16
 
+# TODO: Re-encode if tags have changed.
+
 # ---
 
 pushd ${MUSIC_DIR}
