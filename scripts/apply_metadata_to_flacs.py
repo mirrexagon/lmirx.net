@@ -10,7 +10,7 @@ from mutagen.flac import FLAC
 
 # -- Constants --
 METADATA_PATH = "../music.json"
-MUSIC_PATH = "~/archive/finished_music/music"
+MUSIC_DIR =  os.environ["HOME"] + "/archive/finished_music/music/"
 
 TAGS = ["title", "artist", "comment"]
 

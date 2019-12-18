@@ -4,11 +4,12 @@
 
 # -- Import --
 import json
+import os
 import os.path
 
 # -- Constants --
 METADATA_PATH = "../music.json"
-MUSIC_DIR = "~/archive/finished_music/music/"
+MUSIC_DIR =  os.environ["HOME"] + "/archive/finished_music/music/"
 
 # -- Main --
 def main():
