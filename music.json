@@ -1,5 +1,15 @@
 [
     {
+        "basename": "lmirx_-_frosty",
+        "project_extension": "xrns",
+        "title": "Frosty",
+        "artist": "LMirx",
+        "date": "2020-06-19",
+        "tags": [
+            "renoise"
+        ]
+    },
+    {
         "basename": "lmirx_-_destiny_fl",
         "project_extension": "xrns",
         "title": "Destiny FL",
