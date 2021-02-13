@@ -12,7 +12,7 @@ pushd ${MUSIC_DIR}
 
 for src in *.flac; do
     OGG_PATH=$(echo ${src} | sed 's/\.flac$/\.ogg/')
-    if [ ! -e $OGG_PATH ]; then
+    if [ ! -e $OGG_PATH -o ${src} -nt $OGG_PATH ]; then
         ffmpeg -y -i ${src} $OGG_PATH &
     fi
 
