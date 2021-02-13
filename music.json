@@ -27,7 +27,7 @@
         "tags": [
             "renoise"
         ],
-        "comment": "It's too hard to stick to pure genres (trance in this case). So you get this."
+        "comment": "It's too hard to stick to pure genres (trance in this case). So you get this.\n\nPlugins/sample libraries used: Synth1, Cinematic Strings 2 with Kontakt 5"
     },
     {
         "basename": "lmirx_-_blind_siren_respite",
@@ -38,7 +38,7 @@
             "renoise",
             "aeroverse"
         ],
-        "comment": "A calm version of Blind Siren, or at least it starts that way."
+        "comment": "A calm version of Blind Siren, or at least it starts that way.\n\nPlugins used: Cinematic Strings 2 with Kontakt 5"
     },
     {
         "basename": "electric_love_-_into_the_sky_prototype",
@@ -69,7 +69,7 @@
         "tags": [
             "renoise"
         ],
-        "comment": "Plugins/sample libraries used: Cinematic Strings 2 via Kontakt 5"
+        "comment": "Plugins/sample libraries used: Cinematic Strings 2 with Kontakt 5"
     },
     {
         "basename": "lmirx_-_blind_siren_battle_mix",
@@ -99,7 +99,7 @@
         "tags": [
             "renoise"
         ],
-        "comment": "This started as Eurobeat, and slowly spiralled out of control. The name is from this sounding like it would play when the hero has gotten the upper hand on the villain and is executing their epic coordinated plan to defeat them.\n\nPlugins used: Synth1, Cinematic Strings 2 via Kontakt 5"
+        "comment": "This started as Eurobeat, and slowly spiralled out of control. The name is from this sounding like it would play when the hero has gotten the upper hand on the villain and is executing their epic coordinated plan to defeat them.\n\nPlugins used: Synth1, Cinematic Strings 2 with Kontakt 5"
     },
     {
         "basename": "lmirx_-_sometimes_i_reach_out_and_touch_the_stars",
@@ -131,7 +131,7 @@
         "tags": [
             "renoise"
         ],
-        "comment": "Imagine: the car is racing towards the bend. The racer's behind, and they have only one chance to get back into the race. Against all odds, they have to make this drift.\n\nPlugins/sample libraries used: Cinematic Strings 2 via Kontakt 5, Virtual Playing Orchestra's drum kit via Plogue Sforzando"
+        "comment": "Imagine: the car is racing towards the bend. The racer's behind, and they have only one chance to get back into the race. Against all odds, they have to make this drift.\n\nPlugins/sample libraries used: Cinematic Strings 2 via Kontakt 5, Virtual Playing Orchestra's drum kit with Plogue Sforzando"
     },
     {
         "basename": "lmirx_-_boss_time",
@@ -151,7 +151,7 @@
         "tags": [
             "renoise"
         ],
-        "comment": "Plugins used: Cinematic Strings 2 via Kontakt 5, Virtual Playing Orchestra's tubular bells via Plogue Sforzando"
+        "comment": "Plugins used: Cinematic Strings 2 via Kontakt 5, Virtual Playing Orchestra's tubular bells with Plogue Sforzando"
     },
     {
         "basename": "lmirx_-_impending",
