@@ -1,6 +1,10 @@
 ---
+permalink: /
 ---
 <!DOCTYPE html>
+
+{% set CONTENT_URL = "https://s3-ap-southeast-2.amazonaws.com/lmirx.net" %}
+{% set MUSIC_CONTENT_URL = CONTENT_URL + "/music" %}
 
 <html>
     <head>
@@ -8,8 +12,8 @@
 
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-        <link rel="icon" type="image/png" href="favicon.png">
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="stylesheet" type="text/css" href="/styles.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans">
     </head>
 
@@ -24,40 +28,40 @@
         </div>
 
         <div id="music-search">
-            <input id="music-search-input" type="text" onkeyup="on_search_key_up()">
+            <input id="music-search-input" type="text">
         </div>
 
-        <div id="music-viewer"">
+        <div id="music-viewer">
             <ul id="music-list">
+                {% for song in music.music %}
+                    {% set songContentBaseUrl = MUSIC_CONTENT_URL + "/" + song.basename %}
+
+                    <div class="song-item" id="{{ song.basename }}">
+                        <h2 class="song-title">{{ song.artist }} - {{ song.title }}</h2>
+
+                        <audio class="song-audio" controls preload="none">
+                            <source class="song-audio-source" src="{{ songContentBaseUrl }}.ogg" type="audio/ogg">
+                        </audio>
+
+                        <ul class="song-downloads">
+                            <li><a href="{{ songContentBaseUrl }}.flac">FLAC</a></li>
+                            <li><a href="{{ songContentBaseUrl }}.ogg">Ogg Vorbis</a></li>
+
+                            {% if song.project_extension %}
+                                <li><a href="{{ songContentBaseUrl}}.{{ song.project_extension }}">Project file (.{{ song.project_extension }})</a></li>
+                            {% endif %}
+                        </ul>
+
+                        <p class="song-comment">{{ song.comment }}</p>
+
+                        <ul class="song-tags">
+                            {% for tag in song.tags %}
+                                <li><button>{{ tag }}</button></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
             </ul>
         </div>
-        <script src="music-viewer.js"></script>
-        <noscript>The music list requires JavaScript to be enabled.</noscript>
-
-        <template id="song-item">
-            <div class="song-item">
-                <h2 class="song-title"></h2>
-
-                <audio class="song-audio" controls preload="none">
-                    <source class="song-audio-source" type="audio/ogg">
-                </audio>
-
-                <ul class="song-downloads">
-                </ul>
-
-                <p class="song-comment"></p>
-
-                <ul class="song-tags">
-                </ul>
-            </div>
-        </template>
-
-        <template id="song-downloads-item">
-            <li><a></a></li>
-        </template>
-
-        <template id="song-tags-item">
-            <li><button></button></li>
-        </template>
     </body>
 </html>

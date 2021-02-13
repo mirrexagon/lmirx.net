@@ -4,4 +4,8 @@ const site = lume();
 
 site.ignore("README.md");
 
+site.copy("styles.css");
+site.copy("favicon.png");
+site.copy("logo.svg");
+
 export default site;
